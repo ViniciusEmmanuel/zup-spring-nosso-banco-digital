@@ -71,6 +71,8 @@ public class PropostaContaPessoaFisica {
     @URL
     private String linkImgCpf;
 
+    private Boolean aceitaProposta;
+
     @Deprecated
     PropostaContaPessoaFisica() {}
 
@@ -99,6 +101,12 @@ public class PropostaContaPessoaFisica {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public void ComplementaDadosEtapa4(@NotNull Boolean aceitaProposta){
+        this.aceitaProposta = aceitaProposta;
+        this.etapa = EtapaNovaConta.ETAPA_4;
+        this.updatedAt = LocalDateTime.now();
+    }
+
     public UUID getId() {
         return id;
     }
@@ -107,32 +115,16 @@ public class PropostaContaPessoaFisica {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getSobrenome() {
         return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCpf() {
         return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public EtapaNovaConta getEtapa() {
@@ -161,5 +153,13 @@ public class PropostaContaPessoaFisica {
 
     public String getLinkImgCpf() {
         return linkImgCpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public Boolean getAceitaProposta() {
+        return aceitaProposta;
     }
 }
