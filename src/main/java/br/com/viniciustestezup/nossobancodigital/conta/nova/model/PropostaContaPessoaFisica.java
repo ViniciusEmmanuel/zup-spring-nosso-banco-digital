@@ -1,6 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.model;
 
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
+import org.hibernate.validator.constraints.URL;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -66,6 +67,9 @@ public class PropostaContaPessoaFisica {
     @Size(max = 80)
     private String estado;
 
+    @NotBlank
+    @URL
+    private String linkImgCpf;
 
     @Deprecated
     PropostaContaPessoaFisica() {}
@@ -86,6 +90,12 @@ public class PropostaContaPessoaFisica {
         this.cidade = cidade;
         this.estado = estado;
         this.etapa = EtapaNovaConta.ETAPA_2;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void ComplementaDadosEtapa3(@NotBlank @URL String linkImgCpf) {
+        this.linkImgCpf = linkImgCpf;
+        this.etapa = EtapaNovaConta.ETAPA_3;
         this.updatedAt = LocalDateTime.now();
     }
 
@@ -147,5 +157,9 @@ public class PropostaContaPessoaFisica {
 
     public String getEstado() {
         return estado;
+    }
+
+    public String getLinkImgCpf() {
+        return linkImgCpf;
     }
 }
