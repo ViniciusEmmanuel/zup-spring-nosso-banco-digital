@@ -3,19 +3,15 @@ package br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.PropostaContaPessoaFisicaRepository;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class RequestPropostaPessoaFisicaEstapa2DTO {
+public class RequestPropostaPessoaFisicaEtapa2DTO {
 
     @NotBlank
     @Size(min = 8, max = 8,message = "O cep deve conter somente seus 8 digitos.")

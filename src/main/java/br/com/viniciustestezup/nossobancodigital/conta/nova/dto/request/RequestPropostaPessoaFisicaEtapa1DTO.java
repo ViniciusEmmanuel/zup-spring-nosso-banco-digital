@@ -10,7 +10,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class RequestPropostaPessoaFisicaEstapa1DTO {
+public class RequestPropostaPessoaFisicaEtapa1DTO {
 
     @NotBlank
     private String nome;

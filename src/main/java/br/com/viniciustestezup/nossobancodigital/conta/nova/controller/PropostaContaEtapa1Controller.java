@@ -3,7 +3,7 @@ package br.com.viniciustestezup.nossobancodigital.conta.nova.controller;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.Location;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.PropostaContaPessoaFisicaRepository;
-import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request.RequestPropostaPessoaFisicaEstapa1DTO;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request.RequestPropostaPessoaFisicaEtapa1DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.validadores.RequestPropostaPessoaFisicaEtapa1Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class PropostaContaEtapa1Controller extends  BaseController {
 
     @PostMapping(value = baseURL)
     @Transactional
-    public ResponseEntity novaContaEtapa1(@Valid @RequestBody RequestPropostaPessoaFisicaEstapa1DTO requestProposta1) {
+    public ResponseEntity NovaPropostaEtapa1(@Valid @RequestBody RequestPropostaPessoaFisicaEtapa1DTO requestProposta1) {
         PropostaContaPessoaFisica propostaContaPessoaFisica = requestProposta1.toModel();
         propostaContaPessoaFisicaRepository.save(propostaContaPessoaFisica);
         String pathUrl = baseURL+"/etapa_2/"+propostaContaPessoaFisica.getId();
