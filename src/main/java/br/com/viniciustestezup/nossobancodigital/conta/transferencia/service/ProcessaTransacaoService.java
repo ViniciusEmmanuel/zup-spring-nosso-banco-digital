@@ -1,5 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.transferencia.service;
 
+import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.SendEmail;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Conta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.ContaId;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.compartilhado.StatusTransferencia;
@@ -20,6 +21,9 @@ public class ProcessaTransacaoService {
     @Autowired
     private EntityManager entityManager;
 
+    @Autowired
+    private SendEmail emailService;
+
     public ProcessaTransacaoService() { }
 
     @Transactional
@@ -35,9 +39,14 @@ public class ProcessaTransacaoService {
         ContaId contaId = new ContaId(transferencia.getContaDestino(), transferencia.getAgenciaDestino());
         Conta conta = entityManager.find(Conta.class, contaId);
         conta.adicionaTransferencia(transferencia);
+
         entityManager.persist(conta);
 
         transferencia.transferenciaRealizada();
         entityManager.persist(transferencia);
+
+        String message = String.format("Você recebeu uma transferencia no valor de %s \n" +
+                "Obrigado por contar com Nosso Banco Digital.", transferencia.getValor());
+        emailService.sendEmail(conta.getCliente().getEmail(), message);
     }
 }
