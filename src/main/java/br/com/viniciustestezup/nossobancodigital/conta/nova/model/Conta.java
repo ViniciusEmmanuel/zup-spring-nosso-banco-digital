@@ -1,23 +1,29 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.model;
 
+import br.com.viniciustestezup.nossobancodigital.conta.transferencia.model.Transferencia;
+import br.com.viniciustestezup.nossobancodigital.conta.transferencia.service.ProcessaTransacaoService;
 import jdk.jfr.Unsigned;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 @Entity
+@IdClass(ContaId.class)
 public class Conta {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Conta.class);
 
     @Id
     @NotNull
     @Unsigned
     private Integer conta;
 
+    @Id
     @NotNull
     @Unsigned
     private Integer agencia;
@@ -31,6 +37,15 @@ public class Conta {
     @NotNull
     @OneToOne(targetEntity = Cliente.class)
     private Cliente cliente;
+
+//    @OneToMany(targetEntity = Transferencia.class)
+//    @JoinColumns({
+//            @JoinColumn(name = "contaDestino"),
+//            @JoinColumn(name = "agenciaDestino")
+//    })
+//    private List<Transferencia> transferencias;
+
+    public Conta() { }
 
     public Conta(@NotNull Cliente cliente) {
         this.conta = gerarNumeroConta();
@@ -70,5 +85,10 @@ public class Conta {
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    public void adicionaTransferencia(Transferencia transferencia) {
+        LOGGER.info(String.format("Adicionado saldo da transferencia no valor: %s",transferencia.getValor()));
+        this.saldo = this.saldo.add(transferencia.getValor());
     }
 }
