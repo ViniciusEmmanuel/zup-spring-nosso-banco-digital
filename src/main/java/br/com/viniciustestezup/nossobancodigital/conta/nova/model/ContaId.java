@@ -6,6 +6,7 @@ public class ContaId implements Serializable {
     private Integer conta;
     private Integer agencia;
 
+    @Deprecated
     public ContaId() { }
 
     public ContaId(Integer conta, Integer agencia) {

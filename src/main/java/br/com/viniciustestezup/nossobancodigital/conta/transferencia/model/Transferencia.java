@@ -53,6 +53,7 @@ public class Transferencia {
     @PastOrPresent
     private LocalDateTime updatedAt = LocalDateTime.now();
 
+    @Deprecated
     public Transferencia() {}
 
     public Transferencia(@NotNull Long codigoTransferencia, @NotNull Integer bancoOrigem, @NotNull Integer contaOrigem, @NotNull Integer agenciaOrigem, @NotNull Integer contaDestino, @NotNull Integer agenciaDestino, @NotNull BigDecimal valor, @NotNull @PastOrPresent LocalDate dataRealizacao) {

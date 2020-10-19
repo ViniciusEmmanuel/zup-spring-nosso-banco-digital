@@ -38,13 +38,14 @@ public class Conta {
     @OneToOne(targetEntity = Cliente.class)
     private Cliente cliente;
 
-//    @OneToMany(targetEntity = Transferencia.class)
-//    @JoinColumns({
-//            @JoinColumn(name = "contaDestino"),
-//            @JoinColumn(name = "agenciaDestino")
-//    })
-//    private List<Transferencia> transferencias;
+    @OneToMany(targetEntity = Transferencia.class)
+    @JoinColumns({
+            @JoinColumn(name = "contaDestino"),
+            @JoinColumn(name = "agenciaDestino")
+    })
+    private List<Transferencia> transferencias;
 
+    @Deprecated
     public Conta() { }
 
     public Conta(@NotNull Cliente cliente) {
