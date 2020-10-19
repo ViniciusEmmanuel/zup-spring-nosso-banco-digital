@@ -1,6 +1,9 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.model;
 
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusProposta;
+import jdk.jfr.Unsigned;
+import net.bytebuddy.implementation.bind.annotation.Default;
 import org.hibernate.validator.constraints.URL;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,7 +12,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -73,6 +75,14 @@ public class PropostaContaPessoaFisica {
 
     private Boolean aceitaProposta;
 
+    @Enumerated(EnumType.STRING)
+    private StatusProposta status;
+
+    @NotNull
+    @Unsigned
+    @Column(columnDefinition = "integer default 0")
+    private Integer tentativaValidarAceiteProposta;
+
     @Deprecated
     PropostaContaPessoaFisica() {}
 
@@ -104,6 +114,12 @@ public class PropostaContaPessoaFisica {
     public void ComplementaDadosEtapa4(@NotNull Boolean aceitaProposta){
         this.aceitaProposta = aceitaProposta;
         this.etapa = EtapaNovaConta.ETAPA_4;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void ComplementaDadosEtapa5(@NotNull StatusProposta status) {
+        this.status = status;
+        this.etapa = EtapaNovaConta.ETAPA_5;
         this.updatedAt = LocalDateTime.now();
     }
 
@@ -161,5 +177,11 @@ public class PropostaContaPessoaFisica {
 
     public Boolean getAceitaProposta() {
         return aceitaProposta;
+    }
+
+    public Integer getTentativaValidarAceiteProposta() { return tentativaValidarAceiteProposta; }
+
+    public void setTentativaValidarAceiteProposta(@Positive Integer tentativaValidarAceiteProposta) {
+        this.tentativaValidarAceiteProposta = tentativaValidarAceiteProposta;
     }
 }

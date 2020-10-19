@@ -6,6 +6,9 @@ import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.GetResp
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.PostResponseAceitaNovaPropostaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.PropostaContaPessoaFisicaRepository;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.service.AdicionaNovoJobPropostaEtapa5Service;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.service.NovaPropostaEtapa5Service;
+import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +26,13 @@ public class PropostaContaEtapa4Controller extends BaseController{
     private final String _URL = baseURL+"/etapa_4/{propostaId}";
 
     @Autowired
-    PropostaContaPessoaFisicaRepository propostaContaPessoaFisicaRepository;
+    private PropostaContaPessoaFisicaRepository propostaContaPessoaFisicaRepository;
+
+    @Autowired
+    private NovaPropostaEtapa5Service novaPropostaEtapa5Service;
+
+    @Autowired
+    private AdicionaNovoJobPropostaEtapa5Service adicionaNovoJobPropostaEtapa5Service;
 
     @GetMapping(value = _URL, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<GetResponseBuscaNovaPropostaEtapa4DTO> BuscaNovaPropostaEtapa4(@PathVariable UUID propostaId) {
@@ -49,6 +58,9 @@ public class PropostaContaEtapa4Controller extends BaseController{
 
         PropostaContaPessoaFisica propostaContaPessoaFisica = requestProposta4.toModel();
         propostaContaPessoaFisicaRepository.save(propostaContaPessoaFisica);
+
+        adicionaNovoJobPropostaEtapa5Service.execute(propostaId);
+        //novaPropostaEtapa5Service.execute(propostaContaPessoaFisica.getId());
         return ResponseEntity.status(HttpStatus.OK).body(requestProposta4.toPostResponseAceitaNovaPropostaEtapa4DTO());
     }
  }
