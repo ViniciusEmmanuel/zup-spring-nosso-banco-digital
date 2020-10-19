@@ -1,7 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.service;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.configuracoes.AsyncConfiguration;
-import br.com.viniciustestezup.nossobancodigital.compartilhado.services.SendEmailService;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.SendEmail;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusProposta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusSistemaExterno;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Cliente;
@@ -10,7 +9,6 @@ import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaP
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +24,7 @@ public class NovaPropostaEtapa5Service {
     private static final Logger LOGGER = LoggerFactory.getLogger(BuscaSistemaExternoService.class);
 
     @Autowired
-    private SendEmailService sendEmailService;
+    private SendEmail emailService;
 
     @Autowired
     private BuscaSistemaExternoService buscaSistemaExternoService;
@@ -47,7 +45,7 @@ public class NovaPropostaEtapa5Service {
 
         if (propostaContaPessoaFisica.getAceitaProposta() == false)
         {
-            sendEmailService.sendEmail(propostaContaPessoaFisica.getEmail(), "Venha fazer parte do Nosso Banco Digital, queremos você como nosso cliente.");
+            emailService.sendEmail(propostaContaPessoaFisica.getEmail(), "Venha fazer parte do Nosso Banco Digital, queremos você como nosso cliente.");
             return;
         }
 
@@ -110,6 +108,6 @@ public class NovaPropostaEtapa5Service {
                 "Conta: %s \n" +
                 "Obrigado por contar com Nosso Banco Digital.", conta.getAgencia(), conta.getConta());
 
-        sendEmailService.sendEmail(propostaContaPessoaFisica.getEmail(), message);
+        emailService.sendEmail(propostaContaPessoaFisica.getEmail(), message);
     }
 }
