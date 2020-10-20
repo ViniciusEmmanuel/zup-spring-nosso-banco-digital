@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.transferencia.service;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.SendEmail;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.EmailService;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Conta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.ContaId;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.compartilhado.StatusTransferencia;
@@ -22,7 +22,7 @@ public class ProcessaTransacaoService {
     private EntityManager entityManager;
 
     @Autowired
-    private SendEmail emailService;
+    private EmailService emailService;
 
     public ProcessaTransacaoService() { }
 
