@@ -1,6 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.conta.transferencia.dto.request;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Conta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.ContaId;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.ContaRepository;
@@ -115,7 +116,8 @@ public class ReceberNovaTransferenciaDTO {
         ResponseError responseError = new ResponseError();
         if (!existeConta.isPresent()){
             responseError.setCode(HttpStatus.BAD_REQUEST);
-            responseError.setMessages(new Error("Conta não identificada."));
+            responseError.setErros(new ObjetoError("Conta não identificada.", "contaDestino", contaDestino.toString()));
+            responseError.setErros(new ObjetoError("Conta não identificada.", "agenciaDestino", agenciaDestino.toString()));
             return responseError;
         }
 

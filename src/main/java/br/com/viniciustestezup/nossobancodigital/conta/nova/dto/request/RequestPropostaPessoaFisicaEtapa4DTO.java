@@ -1,6 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.GetResponseBuscaNovaPropostaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.PostResponseAceitaNovaPropostaEtapa4DTO;
@@ -34,7 +35,7 @@ public class RequestPropostaPessoaFisicaEtapa4DTO {
         if (!existPropostaContaPessoaFisica.isPresent())
         {
             responseError.setCode(HttpStatus.NOT_FOUND);
-            responseError.setMessages(new Error("Proposta não encontrada"));
+            responseError.setErros(new ObjetoError("Proposta não encontrada","",propostaId));
             return responseError;
         }
 
@@ -42,7 +43,7 @@ public class RequestPropostaPessoaFisicaEtapa4DTO {
         if (propostaContaPessoaFisica.getEtapa() != EtapaNovaConta.ETAPA_3)
         {
             responseError.setCode(HttpStatus.UNPROCESSABLE_ENTITY);
-            responseError.setMessages(new Error("Proposta precisa ter finalizada a primeira a segunda e a terceira etapa."));
+            responseError.setErros(new ObjetoError("Proposta precisa ter finalizada a primeira a segunda e a terceira etapa.","",""));
             return responseError;
         }
         return responseError;

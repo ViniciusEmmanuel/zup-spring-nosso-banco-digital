@@ -1,6 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.FilesUploader;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,7 +38,7 @@ public class RequestPropostaPessoaFisicaEtapa3DTO {
         if (!existPropostaContaPessoaFisica.isPresent())
         {
             responseError.setCode(HttpStatus.NOT_FOUND);
-            responseError.setMessages(new Error("Proposta não encontrada"));
+            responseError.setErros(new ObjetoError("Proposta não encontrada","",propostaId.toString()));
             return responseError;
         }
 
@@ -46,7 +46,7 @@ public class RequestPropostaPessoaFisicaEtapa3DTO {
         if (propostaContaPessoaFisica.getEtapa() != EtapaNovaConta.ETAPA_2)
         {
             responseError.setCode(HttpStatus.UNPROCESSABLE_ENTITY);
-            responseError.setMessages(new Error("Proposta precisa ter finalizada a primeira e a segunda etapa."));
+            responseError.setErros(new ObjetoError("Proposta precisa ter finalizada a primeira e a segunda etapa.", "",""));
             return responseError;
         }
         return responseError;

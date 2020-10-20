@@ -1,7 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.conta.login.dto.request;
 
 import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ErrorObject;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Cliente;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.ClienteRepository;
 import org.springframework.http.HttpStatus;
@@ -41,17 +41,17 @@ public class NovoPasswordDTO {
 
         if (LocalDateTime.now().isAfter(timeToken)) {
             responseError.setCode(HttpStatus.BAD_REQUEST);
-            responseError.setErros(new ErrorObject("Tempo expirado", "token", token));
+            responseError.setErros(new ObjetoError("Tempo expirado", "token", token));
         }
 
         if (cliente.getPrimeiroAcessoRealizado()) {
             responseError.setCode(HttpStatus.BAD_REQUEST);
-            responseError.setErros(new ErrorObject("Token já utilizado", "token", token));
+            responseError.setErros(new ObjetoError("Token já utilizado", "token", token));
         }
 
         if (!cliente.validarSegurancaPassword(password)) {
             responseError.setCode(HttpStatus.BAD_REQUEST);
-            responseError.setErros(new ErrorObject("Senha fraca", "password", password));
+            responseError.setErros(new ObjetoError("Senha fraca", "password", password));
         }
 
         return  responseError;

@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.compartilhado.dto;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ErrorObject;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
 import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ResponseError {
 
     private HttpStatus code;
-    private ArrayList<ErrorObject> erros = new ArrayList<>();
+    private ArrayList<ObjetoError> erros = new ArrayList<>();
 
     private final String message = "Falha na Requisição";
 
@@ -27,7 +27,7 @@ public class ResponseError {
         return new ErrorResponse(message, code.value(), code.getReasonPhrase(), erros);
     }
 
-    public void setErros(ErrorObject erros) { this.erros.add(erros); }
+    public void setErros(ObjetoError erros) { this.erros.add(erros); }
 
     public boolean hasError(){ return !erros.isEmpty(); }
 }

@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.controller;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.FilesUploader;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.Location;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request.RequestPropostaPessoaFisicaEtapa3DTO;
@@ -31,7 +31,7 @@ public class PropostaContaEtapa3Controller extends BaseController {
 
         ResponseError error = requestProposta3.validarRequest(propostaContaPessoaFisicaRepository, propostaId);
         if (error.hasError())
-            return (ResponseEntity) ResponseEntity.status(error.getCode()).body(error.getMessages());
+            return (ResponseEntity) ResponseEntity.status(error.getCode()).body(error.getErros());
 
         PropostaContaPessoaFisica propostaContaPessoaFisica = requestProposta3.toModel(filesUploader);
         propostaContaPessoaFisicaRepository.save(propostaContaPessoaFisica);

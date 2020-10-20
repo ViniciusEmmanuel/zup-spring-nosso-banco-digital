@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.controller;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request.RequestPropostaPessoaFisicaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.GetResponseBuscaNovaPropostaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.PostResponseAceitaNovaPropostaEtapa4DTO;
@@ -8,7 +8,6 @@ import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaP
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.PropostaContaPessoaFisicaRepository;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.service.AdicionaNovoJobPropostaEtapa5Service;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.service.NovaPropostaEtapa5Service;
-import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,7 +42,7 @@ public class PropostaContaEtapa4Controller extends BaseController{
                                 .validarRequest(propostaContaPessoaFisicaRepository, propostaId);
 
         if (error.hasError())
-            return (ResponseEntity) ResponseEntity.status(error.getCode()).body(error.getMessages());
+            return (ResponseEntity) ResponseEntity.status(error.getCode()).body(error.getErros());
 
         return ResponseEntity.status(HttpStatus.OK).body(requestPropostaPessoaFisicaEtapa4DTO.toGetResponseBuscaNovaPropostaEtapa4DTO());
     }
@@ -54,7 +53,7 @@ public class PropostaContaEtapa4Controller extends BaseController{
                                                                                             @PathVariable UUID propostaId) {
         ResponseError error = requestProposta4.validarRequest(propostaContaPessoaFisicaRepository, propostaId);
         if (error.hasError())
-            return (ResponseEntity) ResponseEntity.status(error.getCode()).body(error.getMessages());
+            return (ResponseEntity) ResponseEntity.status(error.getCode()).body(error.getErros());
 
         PropostaContaPessoaFisica propostaContaPessoaFisica = requestProposta4.toModel();
         propostaContaPessoaFisicaRepository.save(propostaContaPessoaFisica);

@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.service;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.SendEmail;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.EmailService;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusProposta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusSistemaExterno;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Cliente;
@@ -24,7 +24,7 @@ public class NovaPropostaEtapa5Service {
     private static final Logger LOGGER = LoggerFactory.getLogger(BuscaSistemaExternoService.class);
 
     @Autowired
-    private SendEmail emailService;
+    private EmailService emailService;
 
     @Autowired
     private BuscaSistemaExternoService buscaSistemaExternoService;
