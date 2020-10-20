@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
-public class FileUploaderService implements FilesUploader {
+public class FileUploaderServiceImpl implements FilesUploader {
 
     @Override
     public String upload(MultipartFile file, String key) {
