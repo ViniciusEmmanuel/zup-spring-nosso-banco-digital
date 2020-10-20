@@ -1,14 +1,19 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.model;
 
+import br.com.viniciustestezup.nossobancodigital.compartilhado.services.HashPasswordService;
 import org.hibernate.validator.constraints.URL;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.crypto.KeyGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @Entity
 public class Cliente {
@@ -75,6 +80,16 @@ public class Cliente {
     @PastOrPresent
     private LocalDateTime updatedAt = LocalDateTime.now();
 
+    private String password;
+
+    @Column(columnDefinition = "bool default false")
+    private Boolean primeiroAcessoRealizado = false;
+
+    @Column(length = 6, unique = true)
+    private String tokenPrimeiroAcesso;
+
+    private LocalDateTime createAtTokenPrimeiroAcesso;
+
     @Deprecated
     Cliente() {}
 
@@ -91,6 +106,7 @@ public class Cliente {
         this.estado = propostaContaPessoaFisica.getEstado();
         this.linkImgCpf = propostaContaPessoaFisica.getLinkImgCpf();
         this.proposta = propostaContaPessoaFisica;
+        this.primeiroAcessoRealizado = false;
     }
 
     public UUID getId() {
@@ -149,5 +165,50 @@ public class Cliente {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public Boolean getPrimeiroAcessoRealizado() { return primeiroAcessoRealizado; }
+
+    public String getTokenPrimeiroAcesso() { return tokenPrimeiroAcesso; }
+
+    public LocalDateTime getCreateAtTokenPrimeiroAcesso() { return createAtTokenPrimeiroAcesso; }
+
+    public void gerarTokenPrimeiroAcesso() {
+        if (this.primeiroAcessoRealizado)
+            throw new RuntimeException("Primeiro acesso já realizado");
+        try {
+            this.createAtTokenPrimeiroAcesso = LocalDateTime.now();
+
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
+            SecureRandom secureRandom =  new SecureRandom();
+            keyGenerator.init(secureRandom);
+            this.tokenPrimeiroAcesso = keyGenerator
+                                        .generateKey()
+                                        .getEncoded()
+                                        .toString()
+                                        .substring(0,6);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Boolean validarSegurancaPassword(String password) {
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+        return pattern.matcher(password).find();
+    }
+
+    public void primeiroAcesso(@NotBlank String password) {
+        if (this.primeiroAcessoRealizado)
+            throw new RuntimeException("Primeiro acesso já realizado");
+
+        if (!validarSegurancaPassword(password))
+            throw new RuntimeException("Senha não segura.");
+
+        this.password = HashPasswordService.hash(password);
+        this.primeiroAcessoRealizado = true;
+    }
+
+    public Boolean comparaPassword(String passwordSemHash) {
+        return HashPasswordService.comparaHashPassword(passwordSemHash, this.password);
     }
 }
