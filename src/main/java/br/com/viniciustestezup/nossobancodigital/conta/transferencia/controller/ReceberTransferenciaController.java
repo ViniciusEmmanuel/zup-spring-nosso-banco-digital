@@ -1,11 +1,9 @@
 package br.com.viniciustestezup.nossobancodigital.conta.transferencia.controller;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.ContaRepository;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.dto.request.ReceberNovaTransferenciaDTO;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.model.Transferencia;
-import br.com.viniciustestezup.nossobancodigital.conta.transferencia.repository.TransferenciaRepository;
-import br.com.viniciustestezup.nossobancodigital.conta.transferencia.service.AdicionaNovoJobProcessaTransacaoService;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.service.CadastrarTransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

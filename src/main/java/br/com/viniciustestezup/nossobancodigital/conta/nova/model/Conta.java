@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Random;
 
 @Entity
@@ -37,13 +36,6 @@ public class Conta {
     @NotNull
     @OneToOne(targetEntity = Cliente.class)
     private Cliente cliente;
-
-    @OneToMany(targetEntity = Transferencia.class)
-    @JoinColumns({
-            @JoinColumn(name = "contaDestino"),
-            @JoinColumn(name = "agenciaDestino")
-    })
-    private List<Transferencia> transferencias;
 
     @Deprecated
     public Conta() { }
