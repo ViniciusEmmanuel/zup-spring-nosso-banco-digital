@@ -1,14 +1,19 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request;
 
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.PropostaContaPessoaFisicaRepository;
+import br.com.viniciustestezup.nossobancodigital.shared.dto.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.shared.error.ObjetoError;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class RequestPropostaPessoaFisicaEtapa1DTO {
 
@@ -71,6 +76,25 @@ public class RequestPropostaPessoaFisicaEtapa1DTO {
         this.dataNascimento = dataNascimento;
     }
 
+    public ResponseError validarRequest(PropostaContaPessoaFisicaRepository propostaContaPessoaFisicaRepository) {
+        ResponseError responseError = new ResponseError();
+        responseError.setCode(HttpStatus.BAD_REQUEST);
+
+        if (propostaContaPessoaFisicaRepository.existsByEmail(email))
+            responseError.setErros(new ObjetoError("Já existe esse e-mail cadastrado na nossa base de dados.",
+                    "email", email));
+
+        if (propostaContaPessoaFisicaRepository.existsByCpf(cpf))
+            responseError.setErros(new ObjetoError("Já existe esse CPF cadastrado na nossa base de dados.",
+                    "cpf", cpf));
+
+        Period idade = Period.between(dataNascimento, LocalDate.now());
+        if(idade.getYears() < 18)
+            responseError.setErros(new ObjetoError("Para cadastrar a proposta, necessita ter pelo menos 18 anos.",
+                    "dataNascimento", dataNascimento));
+
+        return responseError;
+    }
     public PropostaContaPessoaFisica toModel() {
         return new PropostaContaPessoaFisica(nome, sobrenome, email, cpf, dataNascimento);
     }
