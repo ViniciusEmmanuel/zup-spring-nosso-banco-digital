@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.model;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.services.HashPasswordService;
+import br.com.viniciustestezup.nossobancodigital.shared.services.HashPasswordService;
 import org.hibernate.validator.constraints.URL;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;

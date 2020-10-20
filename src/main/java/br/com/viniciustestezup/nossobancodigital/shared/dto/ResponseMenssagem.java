@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.dto;
+package br.com.viniciustestezup.nossobancodigital.shared.dto;
 
 public class ResponseMenssagem {
 

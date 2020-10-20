@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.transferencia.model;
 
-import br.com.viniciustestezup.nossobancodigital.conta.transferencia.compartilhado.StatusTransferencia;
+import br.com.viniciustestezup.nossobancodigital.conta.transferencia.shared.StatusTransferencia;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

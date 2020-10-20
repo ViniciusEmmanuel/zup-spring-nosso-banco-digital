@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces;
+package br.com.viniciustestezup.nossobancodigital.shared.interfaces;
 
 import org.springframework.web.multipart.MultipartFile;
 

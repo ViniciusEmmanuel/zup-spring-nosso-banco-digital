@@ -1,7 +1,7 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.dto;
+package br.com.viniciustestezup.nossobancodigital.shared.dto;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ErrorResponse;
+import br.com.viniciustestezup.nossobancodigital.shared.error.ObjetoError;
+import br.com.viniciustestezup.nossobancodigital.shared.error.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import java.util.ArrayList;
 

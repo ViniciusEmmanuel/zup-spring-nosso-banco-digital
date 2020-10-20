@@ -1,7 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.conta.login.dto.request;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
+import br.com.viniciustestezup.nossobancodigital.shared.dto.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.shared.error.ObjetoError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Cliente;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.ClienteRepository;
 import org.springframework.http.HttpStatus;

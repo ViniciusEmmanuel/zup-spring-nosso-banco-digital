@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.controller;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.shared.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request.RequestPropostaPessoaFisicaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.GetResponseBuscaNovaPropostaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.PostResponseAceitaNovaPropostaEtapa4DTO;

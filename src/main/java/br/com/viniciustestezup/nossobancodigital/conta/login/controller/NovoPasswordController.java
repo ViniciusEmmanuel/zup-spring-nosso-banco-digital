@@ -1,7 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.conta.login.controller;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
-import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.EmailService;
+import br.com.viniciustestezup.nossobancodigital.shared.dto.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.shared.interfaces.EmailService;
 import br.com.viniciustestezup.nossobancodigital.conta.login.dto.request.NovoPasswordDTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Cliente;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.ClienteRepository;

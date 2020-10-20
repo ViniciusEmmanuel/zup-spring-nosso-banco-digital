@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces;
+package br.com.viniciustestezup.nossobancodigital.shared.interfaces;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

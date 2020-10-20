@@ -1,8 +1,8 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.error.ObjetoError;
-import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
+import br.com.viniciustestezup.nossobancodigital.shared.error.ObjetoError;
+import br.com.viniciustestezup.nossobancodigital.shared.dto.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.EtapaNovaConta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.GetResponseBuscaNovaPropostaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.response.PostResponseAceitaNovaPropostaEtapa4DTO;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;

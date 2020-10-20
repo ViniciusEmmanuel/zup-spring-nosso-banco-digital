@@ -1,8 +1,8 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.service;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.EmailService;
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusProposta;
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusSistemaExterno;
+import br.com.viniciustestezup.nossobancodigital.shared.interfaces.EmailService;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.StatusProposta;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.StatusSistemaExterno;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Cliente;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Conta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;

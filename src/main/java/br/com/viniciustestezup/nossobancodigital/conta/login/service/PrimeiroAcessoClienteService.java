@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.login.service;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.EmailService;
+import br.com.viniciustestezup.nossobancodigital.shared.interfaces.EmailService;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Cliente;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.ClienteRepository;
 import org.hibernate.validator.constraints.br.CPF;
@@ -12,9 +12,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.crypto.KeyGenerator;
 import javax.validation.constraints.Email;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 
 @Service

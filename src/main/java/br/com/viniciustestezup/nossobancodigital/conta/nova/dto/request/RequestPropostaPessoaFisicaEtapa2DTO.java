@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request;
 
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.EtapaNovaConta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.PropostaContaPessoaFisicaRepository;
 

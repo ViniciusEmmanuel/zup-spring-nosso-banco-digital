@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.login.controller;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseMenssagem;
+import br.com.viniciustestezup.nossobancodigital.shared.dto.ResponseMenssagem;
 import br.com.viniciustestezup.nossobancodigital.conta.login.dto.request.PrimeiroAcessoDTO;
 import br.com.viniciustestezup.nossobancodigital.conta.login.service.PrimeiroAcessoClienteService;
 import org.springframework.beans.factory.annotation.Autowired;

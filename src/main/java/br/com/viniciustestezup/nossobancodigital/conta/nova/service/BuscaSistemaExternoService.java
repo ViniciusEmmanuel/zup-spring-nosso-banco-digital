@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.service;
 
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusSistemaExterno;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.StatusSistemaExterno;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.error;
+package br.com.viniciustestezup.nossobancodigital.shared.error;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

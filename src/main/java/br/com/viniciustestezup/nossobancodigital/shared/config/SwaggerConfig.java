@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.configuracoes;
+package br.com.viniciustestezup.nossobancodigital.shared.config;
 
 import  com.google.common.base.Predicate;
 

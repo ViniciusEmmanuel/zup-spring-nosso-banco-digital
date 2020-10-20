@@ -1,6 +1,6 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.services;
+package br.com.viniciustestezup.nossobancodigital.shared.services;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.FilesUploader;
+import br.com.viniciustestezup.nossobancodigital.shared.interfaces.FilesUploader;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

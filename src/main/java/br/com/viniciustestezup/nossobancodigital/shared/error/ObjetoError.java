@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.error;
+package br.com.viniciustestezup.nossobancodigital.shared.error;
 
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.controller;
 
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.Location;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.Location;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.PropostaContaPessoaFisica;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.PropostaContaPessoaFisicaRepository;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.dto.request.RequestPropostaPessoaFisicaEtapa2DTO;

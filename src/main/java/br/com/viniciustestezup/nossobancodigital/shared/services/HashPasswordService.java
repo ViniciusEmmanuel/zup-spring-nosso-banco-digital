@@ -1,8 +1,7 @@
-package br.com.viniciustestezup.nossobancodigital.compartilhado.services;
+package br.com.viniciustestezup.nossobancodigital.shared.services;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component

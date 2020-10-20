@@ -1,9 +1,8 @@
 package br.com.viniciustestezup.nossobancodigital.conta.nova.model;
 
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.EtapaNovaConta;
-import br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado.StatusProposta;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.EtapaNovaConta;
+import br.com.viniciustestezup.nossobancodigital.conta.nova.shared.StatusProposta;
 import jdk.jfr.Unsigned;
-import net.bytebuddy.implementation.bind.annotation.Default;
 import org.hibernate.validator.constraints.URL;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;

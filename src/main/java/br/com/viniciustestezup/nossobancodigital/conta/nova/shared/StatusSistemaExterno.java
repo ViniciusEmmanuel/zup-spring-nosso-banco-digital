@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado;
+package br.com.viniciustestezup.nossobancodigital.conta.nova.shared;
 
 public enum StatusSistemaExterno {
     ERRO_AO_PROCESSAR,

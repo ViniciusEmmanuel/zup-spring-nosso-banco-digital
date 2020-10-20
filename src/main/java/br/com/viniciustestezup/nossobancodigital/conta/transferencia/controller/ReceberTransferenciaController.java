@@ -1,6 +1,6 @@
 package br.com.viniciustestezup.nossobancodigital.conta.transferencia.controller;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.dto.ResponseError;
+import br.com.viniciustestezup.nossobancodigital.shared.dto.ResponseError;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.repository.ContaRepository;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.dto.request.ReceberNovaTransferenciaDTO;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.model.Transferencia;

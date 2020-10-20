@@ -1,9 +1,9 @@
 package br.com.viniciustestezup.nossobancodigital.conta.transferencia.service;
 
-import br.com.viniciustestezup.nossobancodigital.compartilhado.interfaces.EmailService;
+import br.com.viniciustestezup.nossobancodigital.shared.interfaces.EmailService;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.Conta;
 import br.com.viniciustestezup.nossobancodigital.conta.nova.model.ContaId;
-import br.com.viniciustestezup.nossobancodigital.conta.transferencia.compartilhado.StatusTransferencia;
+import br.com.viniciustestezup.nossobancodigital.conta.transferencia.shared.StatusTransferencia;
 import br.com.viniciustestezup.nossobancodigital.conta.transferencia.model.Transferencia;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

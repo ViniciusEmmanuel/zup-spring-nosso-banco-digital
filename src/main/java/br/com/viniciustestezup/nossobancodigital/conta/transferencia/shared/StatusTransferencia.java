@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.conta.transferencia.compartilhado;
+package br.com.viniciustestezup.nossobancodigital.conta.transferencia.shared;
 
 public enum StatusTransferencia {
     TRANSFERENCIA_A_PROCESSAR,

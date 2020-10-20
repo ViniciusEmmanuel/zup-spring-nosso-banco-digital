@@ -1,4 +1,4 @@
-package br.com.viniciustestezup.nossobancodigital.conta.nova.compartilhado;
+package br.com.viniciustestezup.nossobancodigital.conta.nova.shared;
 
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
