@@ -57,9 +57,7 @@ public class PropostaContaEtapa4Controller extends BaseController{
 
         PropostaContaPessoaFisica propostaContaPessoaFisica = requestProposta4.toModel();
         propostaContaPessoaFisicaRepository.save(propostaContaPessoaFisica);
-
         adicionaNovoJobPropostaEtapa5Service.execute(propostaId);
-        //novaPropostaEtapa5Service.execute(propostaContaPessoaFisica.getId());
         return ResponseEntity.status(HttpStatus.OK).body(requestProposta4.toPostResponseAceitaNovaPropostaEtapa4DTO());
     }
  }
