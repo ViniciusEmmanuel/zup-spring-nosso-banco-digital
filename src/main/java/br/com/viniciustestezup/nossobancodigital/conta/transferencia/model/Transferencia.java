@@ -4,8 +4,10 @@ import br.com.viniciustestezup.nossobancodigital.conta.transferencia.shared.Stat
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,6 +22,10 @@ public class Transferencia {
     @NotNull
     @Column(unique = true)
     private Long codigoTransferencia;
+
+    @NotBlank
+    @NotNull
+    private String documentoOrigem;
 
     @NotNull
     private Integer bancoOrigem;
@@ -37,6 +43,7 @@ public class Transferencia {
     private Integer agenciaDestino;
 
     @NotNull
+    @Positive
     private BigDecimal valor;
 
     @NotNull
@@ -56,8 +63,9 @@ public class Transferencia {
     @Deprecated
     public Transferencia() {}
 
-    public Transferencia(@NotNull Long codigoTransferencia, @NotNull Integer bancoOrigem, @NotNull Integer contaOrigem, @NotNull Integer agenciaOrigem, @NotNull Integer contaDestino, @NotNull Integer agenciaDestino, @NotNull BigDecimal valor, @NotNull @PastOrPresent LocalDate dataRealizacao) {
+    public Transferencia(@NotNull Long codigoTransferencia, @NotBlank @NotNull String documentoOrigem, @NotNull Integer bancoOrigem, @NotNull Integer contaOrigem, @NotNull Integer agenciaOrigem, @NotNull Integer contaDestino, @NotNull Integer agenciaDestino, @NotNull @Positive BigDecimal valor, @NotNull @PastOrPresent LocalDate dataRealizacao) {
         this.codigoTransferencia = codigoTransferencia;
+        this.documentoOrigem = documentoOrigem;
         this.bancoOrigem = bancoOrigem;
         this.contaOrigem = contaOrigem;
         this.agenciaOrigem = agenciaOrigem;
