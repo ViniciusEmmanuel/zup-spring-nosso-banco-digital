@@ -1,8 +1,5 @@
 package br.com.viniciustestezup.nossobancodigital.shared.error;
 
-import lombok.Getter;
-
-@Getter
 public class ObjetoError {
 
     private final String mensagem;
@@ -14,5 +11,17 @@ public class ObjetoError {
         this.mensagem = mensagem;
         this.campo = campo;
         this.parametro = parametro;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public String getCampo() {
+        return campo;
+    }
+
+    public Object getParametro() {
+        return parametro;
     }
 }

@@ -1,10 +1,7 @@
 package br.com.viniciustestezup.nossobancodigital.shared.error;
 
-import lombok.Getter;
-
 import java.util.List;
 
-@Getter
 public class ErrorResponse {
 
     private final String message;
@@ -17,5 +14,21 @@ public class ErrorResponse {
         this.code = code;
         this.status = status;
         this.errors = errors;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public List<ObjetoError> getErrors() {
+        return errors;
     }
 }
