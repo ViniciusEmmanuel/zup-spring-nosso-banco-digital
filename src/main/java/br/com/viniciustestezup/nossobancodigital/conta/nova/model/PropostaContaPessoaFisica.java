@@ -68,7 +68,6 @@ public class PropostaContaPessoaFisica {
     @Size(max = 80)
     private String estado;
 
-    @NotBlank
     @URL
     private String linkImgCpf;
 
@@ -80,12 +79,12 @@ public class PropostaContaPessoaFisica {
     @NotNull
     @Unsigned
     @Column(columnDefinition = "integer default 0")
-    private Integer tentativaValidarAceiteProposta;
+    private Integer tentativaValidarAceiteProposta = 0;
 
     @Deprecated
     PropostaContaPessoaFisica() {}
 
-    public PropostaContaPessoaFisica(@NotBlank @NotNull String nome, @NotBlank @NotNull String sobrenome, @NotBlank @Email @NotNull String email, @NotBlank @CPF @NotNull String cpf, @NotBlank @Past LocalDate dataNascimento) {
+    public PropostaContaPessoaFisica(@NotBlank @NotNull String nome, @NotBlank @NotNull String sobrenome, @NotBlank @Email @NotNull String email, @NotBlank @CPF @NotNull String cpf, @NotBlank @Past @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dataNascimento) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
@@ -95,6 +94,9 @@ public class PropostaContaPessoaFisica {
     }
 
     public void ComplementaDadosEtapa2 (@NotBlank @Size(min = 8, max = 8) String cep, @NotBlank String bairro, @NotBlank String complemento, @NotBlank @Size(max = 100) String cidade, @Size(max = 50) String estado) {
+        if (etapa != EtapaNovaConta.ETAPA_1)
+            throw new RuntimeException("A proposta precisa ter completado a primeira etapa.");
+
         this.cep = cep;
         this.bairro = bairro;
         this.complemento = complemento;
@@ -105,18 +107,27 @@ public class PropostaContaPessoaFisica {
     }
 
     public void ComplementaDadosEtapa3(@NotBlank @URL String linkImgCpf) {
+        if (etapa != EtapaNovaConta.ETAPA_2)
+            throw new RuntimeException("A proposta precisa ter completado a primeira e segunda etapa.");
+
         this.linkImgCpf = linkImgCpf;
         this.etapa = EtapaNovaConta.ETAPA_3;
         this.updatedAt = LocalDateTime.now();
     }
 
     public void ComplementaDadosEtapa4(@NotNull Boolean aceitaProposta){
+        if (etapa != EtapaNovaConta.ETAPA_3)
+            throw new RuntimeException("A proposta precisa ter completado a primeira, segunda e terceira etapa.");
+
         this.aceitaProposta = aceitaProposta;
         this.etapa = EtapaNovaConta.ETAPA_4;
         this.updatedAt = LocalDateTime.now();
     }
 
     public void ComplementaDadosEtapa5(@NotNull StatusProposta status) {
+        if (etapa != EtapaNovaConta.ETAPA_4)
+            throw new RuntimeException("A proposta precisa ter completado a primeira, segunda, terceira e quarta etapa.");
+
         this.status = status;
         this.etapa = EtapaNovaConta.ETAPA_5;
         this.updatedAt = LocalDateTime.now();
@@ -177,6 +188,8 @@ public class PropostaContaPessoaFisica {
     public Boolean getAceitaProposta() {
         return aceitaProposta;
     }
+
+    public StatusProposta getStatus() { return status; }
 
     public Integer getTentativaValidarAceiteProposta() { return tentativaValidarAceiteProposta; }
 
