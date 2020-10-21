@@ -20,16 +20,17 @@ public class PrimeiroAcessoClienteService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PrimeiroAcessoClienteService.class);
 
-    @Autowired
     private EmailService emailService;
-
-    @Autowired
     private ClienteRepository clienteRepository;
 
     @Value("${env_tempoExpiracaoTokenPrimeiroAcesso}")
-    private long tempo_expiracao_token_primeiro_acesso;
+    private long env_tempoExpiracaoTokenPrimeiroAcesso;
 
-    public PrimeiroAcessoClienteService() { }
+    @Autowired
+    public PrimeiroAcessoClienteService(EmailService emailService, ClienteRepository clienteRepository) {
+        this.emailService = emailService;
+        this.clienteRepository = clienteRepository;
+    }
 
     @Async
     @Transactional
@@ -43,14 +44,6 @@ public class PrimeiroAcessoClienteService {
 
         if (cliente.getPrimeiroAcessoRealizado()) {
             LOGGER.info("Cliente já realizou o primeiro acesso");
-            return;
-        }
-
-        LocalDateTime timeToken = cliente.getCreateAtTokenPrimeiroAcesso()
-                                            .plusSeconds(tempo_expiracao_token_primeiro_acesso);
-
-        if (LocalDateTime.now().isBefore(timeToken)) {
-            LOGGER.info("Token com prazo válido.");
             return;
         }
 
