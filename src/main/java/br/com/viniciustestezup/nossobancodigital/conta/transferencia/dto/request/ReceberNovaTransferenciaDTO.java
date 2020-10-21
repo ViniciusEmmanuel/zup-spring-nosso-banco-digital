@@ -9,6 +9,7 @@ import br.com.viniciustestezup.nossobancodigital.conta.transferencia.model.Trans
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
@@ -20,6 +21,10 @@ public class ReceberNovaTransferenciaDTO {
 
     @NotNull
     private Long codigoUnicoTransferencia;
+
+    @NotBlank
+    @NotNull
+    private String documentoOrigem;
 
     @NotNull
     private Integer bancoOrigem;
@@ -60,6 +65,10 @@ public class ReceberNovaTransferenciaDTO {
     public void setBancoOrigem(Integer bancoOrigem) {
         this.bancoOrigem = bancoOrigem;
     }
+
+    public String getDocumentoOrigem() { return documentoOrigem; }
+
+    public void setDocumentoOrigem(String documentoOrigem) { this.documentoOrigem = documentoOrigem; }
 
     public Integer getContaOrigem() {
         return contaOrigem;
@@ -114,6 +123,7 @@ public class ReceberNovaTransferenciaDTO {
         Optional<Conta> existeConta = contaRepository.findById(new ContaId(contaDestino, agenciaDestino));
 
         ResponseError responseError = new ResponseError();
+
         if (!existeConta.isPresent()){
             responseError.setCode(HttpStatus.BAD_REQUEST);
             responseError.setErros(new ObjetoError("Conta não identificada.", "contaDestino", contaDestino.toString()));
@@ -125,6 +135,6 @@ public class ReceberNovaTransferenciaDTO {
     }
 
     public Transferencia toModel() {
-        return new Transferencia(codigoUnicoTransferencia, bancoOrigem, contaOrigem, agenciaOrigem, contaDestino, agenciaDestino, valor, dataRealizacao);
+        return new Transferencia(codigoUnicoTransferencia, documentoOrigem, bancoOrigem, contaOrigem, agenciaOrigem, contaDestino, agenciaDestino, valor, dataRealizacao);
     }
 }
