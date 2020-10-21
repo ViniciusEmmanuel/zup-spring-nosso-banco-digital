@@ -49,7 +49,7 @@ public class NovoPasswordDTO {
             responseError.setErros(new ObjetoError("Token já utilizado", "token", token));
         }
 
-        if (!cliente.validarSegurancaPassword(password)) {
+        if (!cliente.validarPassword(password)) {
             responseError.setCode(HttpStatus.BAD_REQUEST);
             responseError.setErros(new ObjetoError("Senha fraca", "password", password));
         }

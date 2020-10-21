@@ -167,6 +167,8 @@ public class Cliente {
         return updatedAt;
     }
 
+    public String getPassword() { return password; }
+
     public Boolean getPrimeiroAcessoRealizado() { return primeiroAcessoRealizado; }
 
     public String getTokenPrimeiroAcesso() { return tokenPrimeiroAcesso; }
@@ -192,8 +194,8 @@ public class Cliente {
         }
     }
 
-    public Boolean validarSegurancaPassword(String password) {
-        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+    public Boolean validarPassword(String password) {
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8}$");
         return pattern.matcher(password).find();
     }
 
@@ -201,8 +203,8 @@ public class Cliente {
         if (this.primeiroAcessoRealizado)
             throw new RuntimeException("Primeiro acesso já realizado");
 
-        if (!validarSegurancaPassword(password))
-            throw new RuntimeException("Senha não segura.");
+        if (!validarPassword(password))
+            throw new RuntimeException("Senha não cumpre os requisitos necessários.");
 
         this.password = HashPasswordService.hash(password);
         this.primeiroAcessoRealizado = true;
