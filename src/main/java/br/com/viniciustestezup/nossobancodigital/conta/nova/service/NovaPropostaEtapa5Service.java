@@ -21,30 +21,34 @@ import java.util.UUID;
 @Service
 public class NovaPropostaEtapa5Service {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BuscaSistemaExternoService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NovaPropostaEtapa5Service.class);
 
-    @Autowired
     private EmailService emailService;
 
-    @Autowired
     private BuscaSistemaExternoService buscaSistemaExternoService;
 
-    @Autowired
     private EntityManager entityManager;
 
-    @Autowired
     private AdicionaNovoJobPropostaEtapa5Service adicionaNovoJobPropostaEtapa5Service;
 
     private PropostaContaPessoaFisica propostaContaPessoaFisica;
 
-    public NovaPropostaEtapa5Service() {}
+    @Autowired
+    public NovaPropostaEtapa5Service(EmailService emailService,
+                                     BuscaSistemaExternoService buscaSistemaExternoService,
+                                     EntityManager entityManager,
+                                     AdicionaNovoJobPropostaEtapa5Service adicionaNovoJobPropostaEtapa5Service) {
+        this.emailService = emailService;
+        this.buscaSistemaExternoService = buscaSistemaExternoService;
+        this.entityManager = entityManager;
+        this.adicionaNovoJobPropostaEtapa5Service = adicionaNovoJobPropostaEtapa5Service;
+    }
 
     @Transactional
     public void execute(UUID propostaId) {
         propostaContaPessoaFisica = entityManager.find(PropostaContaPessoaFisica.class, propostaId);
 
-        if (propostaContaPessoaFisica.getAceitaProposta() == false)
-        {
+        if (propostaContaPessoaFisica.getAceitaProposta() == false) {
             emailService.sendEmail(propostaContaPessoaFisica.getEmail(), "Venha fazer parte do Nosso Banco Digital, queremos você como nosso cliente.");
             return;
         }
